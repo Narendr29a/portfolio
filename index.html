@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Narendra Kolla | Interactive Portfolio</title>
+    <script type="module" crossorigin src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.esm-browser.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f4f6;
+        color: #111827;
+      }
+      header {
+        background-color: #1f2937;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        background-color: #374151;
+        padding: 1rem;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      section {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 1rem;
+      }
+      .card {
+        background-color: white;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Narendra Kolla</h1>
+        <p>{{ title }}</p>
+      </header>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <section id="about">
+        <div class="card">
+          <h2>About Me</h2>
+          <p>{{ about }}</p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="card">
+          <h2>Highlighted Projects</h2>
+          <div v-for="project in projects" :key="project.name" class="card">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="card">
+          <h2>Skills</h2>
+          <div class="skills-grid">
+            <div v-for="skill in skills" :key="skill" class="card">{{ skill }}</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="card">
+          <h2>Contact</h2>
+          <p>Email: <a :href="`mailto:${email}`">{{ email }}</a></p>
+          <p>LinkedIn: <a :href="linkedin" target="_blank">{{ linkedin }}</a></p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            title: "Senior Data & Business Analyst | Healthcare Domain Expert",
+            about: `With over 9 years of experience, I specialize in integrating clinical, billing, and operational healthcare data into analytics-ready models. I lead projects in Medicaid, CHIP, and Epic EMR integration, with advanced skills in Power BI, SQL, Python, and Azure DevOps.`,
+            projects: [
+              {
+                name: "Medicaid Data Warehouse Integration",
+                description:
+                  "Led scalable, HIPAA-compliant ETL pipelines using Talend and Informatica, authored BRDs, and built traceability matrices to ensure audit clarity for Medicaid and CHIP data."
+              },
+              {
+                name: "Epic System Integration",
+                description:
+                  "Integrated Epic EMR with Power BI/Tableau dashboards, conducted UAT, validated HL7/FHIR feeds, and documented business/technical specs for clinical alignment."
+              },
+              {
+                name: "CHIP Enrollment Conversion Analysis",
+                description:
+                  "Analyzed pediatric coverage trends using SQL + Power BI, built real-time dashboards, and automated policy-responsive logic updates to support state healthcare outreach."
+              }
+            ],
+            skills: [
+              "SQL & Python Programming",
+              "Power BI & Tableau",
+              "Azure (DevOps, ADF, Databricks)",
+              "ETL Tools: SSIS, Talend, Informatica",
+              "HL7, FHIR, HIPAA Compliance",
+              "Business Analysis (BRDs, UAT, Traceability)",
+              "Jira, Confluence, Visio",
+              "Epic EMR, CHIP, MMIS"
+            ],
+            email: "narendra.kolla.em@gmail.com",
+            linkedin: "https://www.linkedin.com/in/kolla-n-556286280/"
+          };
+        }
+      }).mount("#app");
+    </script>
+  </body>
+</html>
